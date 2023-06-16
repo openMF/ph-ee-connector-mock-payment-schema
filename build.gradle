@@ -6,7 +6,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'eclipse'
-    id 'org.springframework.boot' version '2.1.9.RELEASE'
+    id 'org.springframework.boot' version '2.6.2'
     id 'checkstyle'
     id 'com.diffplug.spotless' version '6.19.0'
 }
@@ -182,7 +182,7 @@ configure(this) {
 group = 'org.mifos'
 version = '0.0.1-SNAPSHOT'
 description = 'ph-ee-processor-bulk'
-sourceCompatibility = '1.8'
+sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {
     publications {
