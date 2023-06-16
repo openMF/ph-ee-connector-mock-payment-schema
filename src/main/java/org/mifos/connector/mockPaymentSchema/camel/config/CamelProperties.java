@@ -1,6 +1,6 @@
 package org.mifos.connector.mockPaymentSchema.camel.config;
 
-public class CamelProperties {
+public final class CamelProperties {
 
     private CamelProperties() {}
 
