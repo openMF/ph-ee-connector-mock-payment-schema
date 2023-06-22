@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MockPaymentSchemaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MockPaymentSchemaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MockPaymentSchemaApplication.class, args);
+    }
 
 }

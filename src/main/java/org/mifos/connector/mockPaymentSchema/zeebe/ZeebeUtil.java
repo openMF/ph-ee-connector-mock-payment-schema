@@ -1,14 +1,12 @@
 package org.mifos.connector.mockPaymentSchema.zeebe;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Map;
 import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Map;
-
-
-public class ZeebeUtil {
+class ZeebeUtil {
 
     private static Logger logger = LoggerFactory.getLogger(ZeebeUtil.class);
     private static ObjectMapper objectMapper = new ObjectMapper();
@@ -32,7 +30,7 @@ public class ZeebeUtil {
 
     public static <T> T zeebeVariable(Exchange exchange, String name, Class<T> clazz) throws Exception {
         Object content = zeebeVariablesFrom(exchange).get(name);
-        if (content instanceof Map){
+        if (content instanceof Map) {
             return objectMapper.readValue(objectMapper.writeValueAsString(content), clazz);
         }
         return (T) content;

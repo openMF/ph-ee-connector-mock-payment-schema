@@ -1,11 +1,10 @@
 package org.mifos.connector.mockPaymentSchema.zeebe;
 
-import org.mifos.connector.common.ams.dto.TransferActionType;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.mifos.connector.common.ams.dto.TransferActionType;
 
-public class ZeebeVariables {
+public final class ZeebeVariables {
 
     public static final Map<String, String> ACTION_FAILURE_MAP = new HashMap<>();
 
