@@ -1,4 +1,4 @@
-package org.mifos.connector.mockPaymentSchema.camel.config;
+package org.mifos.connector.mockpaymentschema.camel.config;
 
 import java.util.HashMap;
 import org.apache.camel.CamelContext;

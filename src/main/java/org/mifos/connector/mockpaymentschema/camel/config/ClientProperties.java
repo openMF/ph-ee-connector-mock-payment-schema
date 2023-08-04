@@ -1,4 +1,4 @@
-package org.mifos.connector.mockPaymentSchema.camel.config;
+package org.mifos.connector.mockpaymentschema.camel.config;
 
 import java.util.ArrayList;
 import java.util.List;
