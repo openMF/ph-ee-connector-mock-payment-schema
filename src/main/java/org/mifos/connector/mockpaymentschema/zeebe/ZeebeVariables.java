@@ -1,4 +1,4 @@
-package org.mifos.connector.mockPaymentSchema.zeebe;
+package org.mifos.connector.mockpaymentschema.zeebe;
 
 import java.util.HashMap;
 import java.util.Map;

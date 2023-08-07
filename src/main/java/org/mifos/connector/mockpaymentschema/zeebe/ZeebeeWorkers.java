@@ -1,13 +1,13 @@
-package org.mifos.connector.mockPaymentSchema.zeebe;
+package org.mifos.connector.mockpaymentschema.zeebe;
 
-import static org.mifos.connector.mockPaymentSchema.zeebe.ZeebeVariables.LOCAL_QUOTE_RESPONSE;
-import static org.mifos.connector.mockPaymentSchema.zeebe.ZeebeVariables.PARTY_LOOKUP_FAILED;
-import static org.mifos.connector.mockPaymentSchema.zeebe.ZeebeVariables.TRANSACTION_FAILED;
-import static org.mifos.connector.mockPaymentSchema.zeebe.ZeebeVariables.TRANSACTION_ID;
-import static org.mifos.connector.mockPaymentSchema.zeebe.ZeebeVariables.TRANSFER_CODE;
-import static org.mifos.connector.mockPaymentSchema.zeebe.ZeebeVariables.TRANSFER_CREATE_FAILED;
-import static org.mifos.connector.mockPaymentSchema.zeebe.ZeebeVariables.TRANSFER_PREPARE_FAILED;
-import static org.mifos.connector.mockPaymentSchema.zeebe.ZeebeVariables.TRANSFER_RELEASE_FAILED;
+import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.LOCAL_QUOTE_RESPONSE;
+import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.PARTY_LOOKUP_FAILED;
+import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSACTION_FAILED;
+import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSACTION_ID;
+import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSFER_CODE;
+import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSFER_CREATE_FAILED;
+import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSFER_PREPARE_FAILED;
+import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSFER_RELEASE_FAILED;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.camunda.zeebe.client.ZeebeClient;
