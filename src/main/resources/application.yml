@@ -26,7 +26,7 @@ ams:
     enabled: true
 
 mockFailure:
-  percentage: 50
+  percentage: ${MOCKFAILURE_PERCENTAGE:50}
 
 logging:
   level:
