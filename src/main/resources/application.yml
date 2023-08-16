@@ -8,8 +8,6 @@ camel:
 
 dfspids: "DFSPIDS"
 
-
-
 zeebe:
   client:
     max-execution-threads: 1000
