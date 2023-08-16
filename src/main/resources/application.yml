@@ -8,8 +8,6 @@ camel:
 
 dfspids: "DFSPIDS"
 
-
-
 zeebe:
   client:
     max-execution-threads: 1000
@@ -26,7 +24,7 @@ ams:
     enabled: true
 
 mockFailure:
-  percentage: ${MOCKFAILURE_PERCENTAGE:50}
+  percentage: 50
 
 logging:
   level:
