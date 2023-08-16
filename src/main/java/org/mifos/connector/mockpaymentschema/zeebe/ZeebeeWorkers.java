@@ -63,7 +63,7 @@ public class ZeebeeWorkers {
     private int workerMaxJobs;
 
     @Value("${mockFailure.percentage}")
-    private int mockFailurePercentage;
+    private Integer mockFailurePercentage;
 
     @PostConstruct
     public void setupWorkers() {
