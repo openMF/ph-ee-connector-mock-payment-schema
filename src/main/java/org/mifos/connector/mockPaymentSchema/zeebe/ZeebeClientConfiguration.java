@@ -1,4 +1,4 @@
-package org.mifos.connector.mockpaymentschema.zeebe;
+package org.mifos.connector.mockPaymentSchema.zeebe;
 
 import io.camunda.zeebe.client.ZeebeClient;
 import java.time.Duration;

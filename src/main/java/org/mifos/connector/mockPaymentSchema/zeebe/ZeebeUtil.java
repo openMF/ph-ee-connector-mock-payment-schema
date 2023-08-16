@@ -1,4 +1,4 @@
-package org.mifos.connector.mockpaymentschema.zeebe;
+package org.mifos.connector.mockPaymentSchema.zeebe;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
@@ -6,9 +6,7 @@ import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class ZeebeUtil {
-
-    private ZeebeUtil() {}
+class ZeebeUtil {
 
     private static Logger logger = LoggerFactory.getLogger(ZeebeUtil.class);
     private static ObjectMapper objectMapper = new ObjectMapper();
