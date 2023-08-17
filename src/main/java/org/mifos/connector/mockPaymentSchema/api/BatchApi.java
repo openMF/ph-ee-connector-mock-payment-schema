@@ -2,6 +2,8 @@ package org.mifos.connector.mockpaymentschema.api;
 
 import org.mifos.connector.mockpaymentschema.schema.AuthorizationRequest;
 import org.mifos.connector.mockpaymentschema.service.BatchService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ public class BatchApi {
     @Autowired
     private BatchService batchService;
 
+    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @PostMapping("/batches/{batchId}")
     public ResponseEntity<Object> getAuthorization(@PathVariable String batchId,
             @RequestHeader("X-Client-Correlation-ID") String clientCorrelationId, @RequestBody AuthorizationRequest authorizationRequest,
@@ -29,6 +33,7 @@ public class BatchApi {
         try {
             batchService.getAuthorization(batchId, clientCorrelationId, authorizationRequest, callbackURL);
         } catch (Exception e) {
+            logger.error(e.toString());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
