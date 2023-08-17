@@ -29,3 +29,11 @@ mockFailure:
 logging:
   level:
     root: INFO
+
+async:
+  core_pool_size: 10
+  max_pool_size: 10
+  queue_capacity: 100
+
+threshold:
+  amount: 20000

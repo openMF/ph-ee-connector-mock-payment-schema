@@ -50,7 +50,7 @@ spotless {
 dependencies {
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'org.json:json:20210307'
-    implementation 'org.mifos:ph-ee-connector-common:1.0.0-SNAPSHOT'
+    implementation 'org.mifos:ph-ee-connector-common:1.4.1-SNAPSHOT'
     implementation 'org.apache.camel.springboot:camel-spring-boot-starter:3.4.0'
     implementation 'org.apache.camel:camel-undertow:3.4.0'
     implementation 'org.springframework.boot:spring-boot-starter:2.5.2'
@@ -71,7 +71,7 @@ dependencies {
     checkstyle 'com.github.sevntu-checkstyle:sevntu-checks:1.44.1'
     implementation 'com.diffplug.gradle.spotless:spotless:2.4.1'
     implementation 'com.diffplug.spotless:spotless-plugin-gradle:6.17.0'
-
+    implementation 'io.rest-assured:rest-assured:4.4.0'
     testImplementation 'org.apache.camel:camel-test-spring-junit5:3.4.0'
     testImplementation 'io.cucumber:cucumber-junit:7.8.1'
     testImplementation 'io.cucumber:cucumber-spring:7.8.1'
