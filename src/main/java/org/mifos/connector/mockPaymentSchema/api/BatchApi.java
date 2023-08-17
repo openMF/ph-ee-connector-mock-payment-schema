@@ -23,7 +23,7 @@ public class BatchApi {
             @RequestHeader("X-Client-Correlation-ID") String clientCorrelationId, @RequestBody AuthorizationRequest authorizationRequest,
             @RequestParam(value = "command", required = false, defaultValue = "authorize") String command,
             @RequestHeader(value = "X-CallbackURL") String callbackURL) {
-        if(!command.equals("authorize")) {
+        if(!"authorize".equals(command)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         try {
