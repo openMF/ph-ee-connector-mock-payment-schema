@@ -1,4 +1,4 @@
-package org.mifos.connector.mockPaymentSchema.service;
+package org.mifos.connector.mockpaymentschema.service;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

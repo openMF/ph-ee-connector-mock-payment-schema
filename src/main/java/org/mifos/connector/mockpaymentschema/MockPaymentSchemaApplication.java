@@ -10,4 +10,9 @@ public class MockPaymentSchemaApplication {
         SpringApplication.run(MockPaymentSchemaApplication.class, args);
     }
 
+    public int hello() {
+        int a = 2 + 5;
+        return a;
+    }
+
 }

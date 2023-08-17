@@ -1,4 +1,4 @@
-package org.mifos.connector.mockPaymentSchema.config;
+package org.mifos.connector.mockpaymentschema.config;
 
 import java.util.concurrent.Executor;
 import org.springframework.beans.factory.annotation.Value;

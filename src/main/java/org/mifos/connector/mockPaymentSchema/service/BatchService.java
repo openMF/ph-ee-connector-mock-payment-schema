@@ -1,10 +1,10 @@
-package org.mifos.connector.mockPaymentSchema.service;
+package org.mifos.connector.mockpaymentschema.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.math.BigDecimal;
-import org.mifos.connector.mockPaymentSchema.schema.AuthorizationRequest;
-import org.mifos.connector.mockPaymentSchema.schema.AuthorizationResponse;
+import org.mifos.connector.mockpaymentschema.schema.AuthorizationRequest;
+import org.mifos.connector.mockpaymentschema.schema.AuthorizationResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +27,8 @@ public class BatchService {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Async("asyncExecutor")
-    public void getAuthorization(String batchId, String clientCorrelationId, AuthorizationRequest authRequest, String callbackPath) {
+    public void getAuthorization(String batchId, String clientCorrelationId, AuthorizationRequest authRequest, String callbackUrl) {
         AuthorizationResponse response = new AuthorizationResponse();
-        String callbackUrl = bulkProcessorContactPoint + callbackPath;
 
         if (authRequest.getAmount().compareTo(BigDecimal.valueOf(Long.valueOf(thresholdAmount))) >= 0) {
             response.setStatus("N");
@@ -42,7 +41,7 @@ public class BatchService {
         try {
             sendCallbackService.sendCallback(new ObjectMapper().writeValueAsString(response), callbackUrl);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
     }
 }
