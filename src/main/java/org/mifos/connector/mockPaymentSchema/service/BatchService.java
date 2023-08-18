@@ -15,9 +15,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class BatchService {
 
-    @Value("${bulk-processor.contactpoint}")
-    private String bulkProcessorContactPoint;
-
     @Value("${threshold.amount}")
     private String thresholdAmount;
 
