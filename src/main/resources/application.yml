@@ -40,3 +40,13 @@ async:
 
 threshold:
   amount: 20000
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      liveness:
+        enabled: true
+      readiness:
+        enabled: true
