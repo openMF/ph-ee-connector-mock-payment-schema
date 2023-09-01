@@ -1,6 +1,5 @@
 package org.mifos.connector.mockpaymentschema.zeebe;
 
-import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.LOCAL_QUOTE_RESPONSE;
 import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.PARTY_LOOKUP_FAILED;
 import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSACTION_FAILED;
 import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSACTION_ID;
@@ -10,10 +9,8 @@ import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSFE
 import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSFER_RELEASE_FAILED;
 import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSFER_SETTLEMENT_FAILED;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.api.response.ActivatedJob;
-import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +20,6 @@ import javax.annotation.PostConstruct;
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.json.JSONObject;
-import org.mifos.connector.common.ams.dto.QuoteFspResponseDTO;
-import org.mifos.connector.common.mojaloop.dto.FspMoneyData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +27,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
+@SuppressWarnings("FutureReturnValueIgnored")
 public class ZeebeeWorkers {
 
     public static final String WORKER_PARTY_LOOKUP_LOCAL = "party-lookup-local-";
@@ -51,9 +47,6 @@ public class ZeebeeWorkers {
 
     @Autowired
     private CamelContext camelContext;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Value("${ams.local.enabled:false}")
     private boolean isAmsLocalEnabled;
@@ -233,21 +226,6 @@ public class ZeebeeWorkers {
         jsonJob.put("workflowKey", job.getProcessDefinitionKey());
         jsonJob.put("workflowInstanceKey", job.getProcessInstanceKey());
         logger.info("Job started: {}", jsonJob.toString(4));
-    }
-
-    private Map<String, Object> createFreeQuote(String currency) throws Exception {
-        FspMoneyData fspFee = new FspMoneyData(BigDecimal.ZERO, currency);
-        FspMoneyData fspCommission = new FspMoneyData(BigDecimal.ZERO, currency);
-
-        QuoteFspResponseDTO response = new QuoteFspResponseDTO();
-        response.setFspFee(fspFee);
-        response.setFspCommission(fspCommission);
-
-        Map<String, Object> variables = new HashMap<>();
-        variables.put(LOCAL_QUOTE_RESPONSE, objectMapper.writeValueAsString(response));
-        variables.put("fspFee", fspFee);
-        variables.put("fspCommission", fspCommission);
-        return variables;
     }
 
 }

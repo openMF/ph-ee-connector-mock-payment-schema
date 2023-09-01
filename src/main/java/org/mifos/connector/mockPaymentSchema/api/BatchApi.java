@@ -30,9 +30,8 @@ public class BatchApi {
     @PostMapping("/batches/{batchId}")
     public ResponseEntity<Object> getAuthorization(@PathVariable String batchId,
             @RequestHeader("X-Client-Correlation-ID") String clientCorrelationId, @RequestBody AuthorizationRequest authorizationRequest,
-            @RequestParam(value = "command") String command,
-            @RequestHeader(value = "X-CallbackURL") String callbackURL) {
-        if(!"authorize".equals(command)) {
+            @RequestParam(value = "command") String command, @RequestHeader(value = "X-CallbackURL") String callbackURL) {
+        if (!"authorize".equals(command)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         try {
