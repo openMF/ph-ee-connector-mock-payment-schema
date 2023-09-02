@@ -1,5 +1,7 @@
 package org.mifos.connector.mockpaymentschema.api;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.mifos.connector.mockpaymentschema.schema.AuthorizationRequest;
 import org.mifos.connector.mockpaymentschema.service.BatchService;
 import org.slf4j.Logger;
@@ -22,6 +24,9 @@ public class BatchApi {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @Tag(name = "GOV")
+    @Operation(
+            summary = "Batch Auth-z API")
     @PostMapping("/batches/{batchId}")
     public ResponseEntity<Object> getAuthorization(@PathVariable String batchId,
             @RequestHeader("X-Client-Correlation-ID") String clientCorrelationId, @RequestBody AuthorizationRequest authorizationRequest,
