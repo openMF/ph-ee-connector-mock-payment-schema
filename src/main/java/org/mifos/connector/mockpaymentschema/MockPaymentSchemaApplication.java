@@ -12,5 +12,4 @@ public class MockPaymentSchemaApplication {
         SpringApplication.run(MockPaymentSchemaApplication.class, args);
     }
 
-
 }

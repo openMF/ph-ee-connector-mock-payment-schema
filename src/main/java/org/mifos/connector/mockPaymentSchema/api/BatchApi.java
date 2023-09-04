@@ -25,8 +25,7 @@ public class BatchApi {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Tag(name = "GOV")
-    @Operation(
-            summary = "Batch Auth-z API")
+    @Operation(summary = "Batch Auth-z API")
     @PostMapping("/batches/{batchId}")
     public ResponseEntity<Object> getAuthorization(@PathVariable String batchId,
             @RequestHeader("X-Client-Correlation-ID") String clientCorrelationId, @RequestBody AuthorizationRequest authorizationRequest,
