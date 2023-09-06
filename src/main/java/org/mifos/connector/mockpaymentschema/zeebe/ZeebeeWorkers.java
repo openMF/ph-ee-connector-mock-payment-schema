@@ -8,6 +8,7 @@ import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSFE
 import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSFER_CREATE_FAILED;
 import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSFER_PREPARE_FAILED;
 import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSFER_RELEASE_FAILED;
+import static org.mifos.connector.mockpaymentschema.zeebe.ZeebeVariables.TRANSFER_SETTLEMENT_FAILED;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.camunda.zeebe.client.ZeebeClient;
@@ -17,6 +18,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import javax.annotation.PostConstruct;
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
@@ -138,12 +140,41 @@ public class ZeebeeWorkers {
             logger.info("Job '{}' started from process '{}' with key {}", job.getType(), job.getBpmnProcessId(), job.getKey());
             Map<String, Object> variables = job.getVariablesAsMap();
             variables = setSuccessOrFailure("transaction", variables);
+            variables.put("externalId", UUID.randomUUID());
+            // added to pass the transaction request api not found error
+            logger.debug("{} {}", variables.get(TRANSACTION_FAILED), variables.get(TRANSACTION_ID));
+
+            zeebeClient.newPublishMessageCommand().messageName("mockTransferResponse")
+                    .correlationKey((String) variables.get(TRANSACTION_ID)).timeToLive(Duration.ofMillis(30000)).send().join();
+            client.newCompleteCommand(job.getKey()).variables(variables).send().join();
+        }).name("mockInitiateTransfer").maxJobsActive(workerMaxJobs).open();
+
+        zeebeClient.newWorker().jobType("getMockStatus").handler((client, job) -> {
+            logger.debug("Job '{}' started from process '{}' with key {}", job.getType(), job.getBpmnProcessId(), job.getKey());
+            Map<String, Object> variables = job.getVariablesAsMap();
+            variables = setSuccessOrFailure("transaction", variables);
             // added to pass the transaction request api not found error
             zeebeClient.newPublishMessageCommand().messageName("mockTransferResponse")
                     .correlationKey(variables.get(TRANSACTION_ID).toString()).timeToLive(Duration.ofMillis(30000)).variables(variables)
                     .send();
             client.newCompleteCommand(job.getKey()).variables(variables).send().join();
-        }).name("mockInitiateTransfer").maxJobsActive(workerMaxJobs).open();
+        }).name("getMockStatus").maxJobsActive(workerMaxJobs).open();
+
+        zeebeClient.newWorker().jobType("transfer-validation-ams").handler((client, job) -> {
+            logger.info("Job '{}' started from process '{}' with key {}", job.getType(), job.getBpmnProcessId(), job.getKey());
+            Map<String, Object> variables;
+            variables = job.getVariablesAsMap();
+            variables.put(PARTY_LOOKUP_FAILED, false);
+            zeebeClient.newCompleteCommand(job.getKey()).variables(variables).send().join();
+        }).name("transfer-validation-ams").maxJobsActive(workerMaxJobs).open();
+
+        zeebeClient.newWorker().jobType("transfer-clearing-ams").handler((client, job) -> {
+            logger.info("Job '{}' started from process '{}' with key {}", job.getType(), job.getBpmnProcessId(), job.getKey());
+            Map<String, Object> variables;
+            variables = job.getVariablesAsMap();
+            variables.put(TRANSFER_SETTLEMENT_FAILED, false);
+            zeebeClient.newCompleteCommand(job.getKey()).variables(variables).send().join();
+        }).name("transfer-clearing-ams").maxJobsActive(workerMaxJobs).open();
 
     }
 

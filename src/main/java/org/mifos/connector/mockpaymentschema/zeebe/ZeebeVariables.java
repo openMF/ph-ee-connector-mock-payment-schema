@@ -33,6 +33,8 @@ public final class ZeebeVariables {
     public static final String TRANSFER_RESPONSE_PREFIX = "transferResponse";
 
     public static final String PARTY_LOOKUP_FAILED = "partyLookupFailed";
+
+    public static final String TRANSFER_SETTLEMENT_FAILED = "transferSettlementFailed";
     public static final String PAYEE_LOOKUP_RETRY_COUNT = "payeeAccountStatusRetry";
     public static final String TRANSFER_RETRY_COUNT = "paymentTransferRetry";
     public static final String TRANSACTION_FAILED = "transactionFailed";
