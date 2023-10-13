@@ -27,7 +27,7 @@ ams:
     enabled: true
 
 mockFailure:
-  percentage: 50
+  percentage: 0
 
 logging:
   level:
