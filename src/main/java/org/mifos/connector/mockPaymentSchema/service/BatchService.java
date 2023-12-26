@@ -36,6 +36,7 @@ public class BatchService {
             response.setStatus("Y");
         }
         try {
+            logger.info("Sending callback: {}", callbackUrl);
             sendCallbackService.sendCallback(new ObjectMapper().writeValueAsString(response), callbackUrl);
         } catch (JsonProcessingException e) {
             logger.error(e.toString());
