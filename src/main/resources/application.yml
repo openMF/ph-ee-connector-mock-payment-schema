@@ -1,5 +1,5 @@
 camel:
-  server-port: 5000
+  server-port: 5050
   springboot:
     main-run-controller: true
   dataformat:
@@ -9,7 +9,7 @@ camel:
 dfspids: "DFSPIDS"
 
 server:
-  port: 8080
+  port: 8001
 
 zeebe:
   client:
