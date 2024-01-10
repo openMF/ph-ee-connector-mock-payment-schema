@@ -79,9 +79,9 @@ public class BatchService {
 
     private BatchDTO successfulBatchSummaryResponse(String batchId) {
         Long total = 10L;
-        Long ongoing = 0L;
+        Long ongoing = 1L;
         Long failed = 1L;
-        Long successful = 9L;
+        Long successful = 8L;
         BigDecimal totalAmount = BigDecimal.valueOf(100);
         BigDecimal ongoingAmount = BigDecimal.valueOf(0);
         BigDecimal failedAmount = BigDecimal.valueOf(10);
