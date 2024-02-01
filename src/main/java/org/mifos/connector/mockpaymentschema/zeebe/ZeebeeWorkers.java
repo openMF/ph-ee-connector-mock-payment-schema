@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
-import org.apache.camel.CamelContext;
-import org.apache.camel.ProducerTemplate;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,12 +39,6 @@ public class ZeebeeWorkers {
 
     @Autowired(required = false)
     private ZeebeClient zeebeClient;
-
-    @Autowired
-    private ProducerTemplate producerTemplate;
-
-    @Autowired
-    private CamelContext camelContext;
 
     @Value("${ams.local.enabled:false}")
     private boolean isAmsLocalEnabled;
