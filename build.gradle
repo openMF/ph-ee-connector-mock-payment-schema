@@ -63,7 +63,7 @@ dependencies {
     implementation 'org.springframework:spring-web:5.3.19'
     implementation 'com.amazonaws:aws-java-sdk:1.11.486'
     implementation 'com.azure:azure-storage-blob:12.12.0'
-    implementation 'io.camunda:zeebe-client-java:1.1.0'
+    implementation ('io.camunda:zeebe-client-java:8.1.23')
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.12.0'
     implementation 'org.springframework.kafka:spring-kafka:2.9.2'
     compileOnly 'org.projectlombok:lombok:1.18.24'
