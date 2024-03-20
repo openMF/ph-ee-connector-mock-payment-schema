@@ -1,4 +1,4 @@
-package org.mifos.connector.mockPaymentSchema.schema;
+package org.mifos.connector.mockpaymentschema.schema;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ public class BatchDetailResponse {
 
     private List<Transfer> content;
 
-    private PageableDTO pageable;
+    private org.mifos.connector.mockpaymentschema.schema.PageableDTO pageable;
 
     private Long totalPages;
 
@@ -24,7 +24,7 @@ public class BatchDetailResponse {
 
     private boolean first;
 
-    private SortDTO sort;
+    private org.mifos.connector.mockpaymentschema.schema.SortDTO sort;
 
     private Long numberOfElements;
 

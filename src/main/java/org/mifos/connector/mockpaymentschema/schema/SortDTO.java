@@ -1,4 +1,4 @@
-package org.mifos.connector.mockPaymentSchema.schema;
+package org.mifos.connector.mockpaymentschema.schema;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

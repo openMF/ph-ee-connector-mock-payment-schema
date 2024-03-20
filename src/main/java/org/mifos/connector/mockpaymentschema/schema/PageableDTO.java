@@ -1,4 +1,4 @@
-package org.mifos.connector.mockPaymentSchema.schema;
+package org.mifos.connector.mockpaymentschema.schema;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PageableDTO {
 
-    private SortDTO sort;
+    private org.mifos.connector.mockpaymentschema.schema.SortDTO sort;
 
     private Long pageSize;
 

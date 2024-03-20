@@ -2,10 +2,10 @@ package org.mifos.connector.mockpaymentschema.api;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.mifos.connector.mockPaymentSchema.schema.BatchDTO;
-import org.mifos.connector.mockPaymentSchema.schema.BatchDetailResponse;
-import org.mifos.connector.mockPaymentSchema.service.BatchService;
 import org.mifos.connector.mockpaymentschema.schema.AuthorizationRequest;
+import org.mifos.connector.mockpaymentschema.schema.BatchDTO;
+import org.mifos.connector.mockpaymentschema.schema.BatchDetailResponse;
+import org.mifos.connector.mockpaymentschema.service.BatchService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +53,7 @@ public class BatchApi {
 
     @GetMapping(value = "/batches/{batchId}/detail", produces = MediaType.APPLICATION_JSON_VALUE)
     public BatchDetailResponse batchDetail(@PathVariable String batchId, @RequestParam(value = "pageNo", defaultValue = "0") Integer pageNo,
-                                           @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+            @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         return batchService.getBatchDetails(batchId, pageNo, pageSize);
     }
 }

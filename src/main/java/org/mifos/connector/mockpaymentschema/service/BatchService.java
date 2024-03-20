@@ -1,21 +1,19 @@
-package org.mifos.connector.mockPaymentSchema.service;
+package org.mifos.connector.mockpaymentschema.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
-
-import org.mifos.connector.mockPaymentSchema.schema.BatchDTO;
-import org.mifos.connector.mockPaymentSchema.schema.BatchDetailResponse;
-import org.mifos.connector.mockPaymentSchema.schema.Transfer;
-import org.mifos.connector.mockPaymentSchema.schema.TransferStatus;
 import org.mifos.connector.mockpaymentschema.schema.AuthorizationRequest;
 import org.mifos.connector.mockpaymentschema.schema.AuthorizationResponse;
+import org.mifos.connector.mockpaymentschema.schema.BatchDTO;
+import org.mifos.connector.mockpaymentschema.schema.BatchDetailResponse;
+import org.mifos.connector.mockpaymentschema.schema.Transfer;
+import org.mifos.connector.mockpaymentschema.schema.TransferStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +38,6 @@ public class BatchService {
 
     private int successTxnCount = 9;
 
-
     @Async("asyncExecutor")
     public void getAuthorization(String batchId, String clientCorrelationId, AuthorizationRequest authRequest, String callbackUrl) {
         AuthorizationResponse response = new AuthorizationResponse();
@@ -61,11 +58,9 @@ public class BatchService {
         }
     }
 
-
     public BatchDTO getBatchSummary(String batchId) {
         return successfulBatchSummaryResponse(batchId);
     }
-
 
     public BatchDetailResponse getBatchDetails(String batchId, int pageNo, int pageSize) {
         List<Transfer> transactions = getTransactions(batchId);
@@ -90,9 +85,8 @@ public class BatchService {
         String successPercentage = "90";
         String failedPercentage = "10";
 
-        return new BatchDTO(batchId, null, total, ongoing, failed, successful, totalAmount, successfulAmount,
-                ongoingAmount, failedAmount, null, null, null, status, null, null,
-                failedPercentage, successPercentage);
+        return new BatchDTO(batchId, null, total, ongoing, failed, successful, totalAmount, successfulAmount, ongoingAmount, failedAmount,
+                null, null, null, status, null, null, failedPercentage, successPercentage);
     }
 
     private List<Transfer> getTransactions(String batchId) {
@@ -103,20 +97,17 @@ public class BatchService {
 
             if (successTxnCount > 0) {
                 transfer = getSingleTransaction(index, ThreadLocalRandom.current().nextLong(), UUID.randomUUID().toString(),
-                        TransferStatus.COMPLETED,
-                        batchId);
+                        TransferStatus.COMPLETED, batchId);
             } else {
                 transfer = getSingleTransaction(index, ThreadLocalRandom.current().nextLong(), UUID.randomUUID().toString(),
-                        TransferStatus.IN_PROGRESS,
-                        batchId);
+                        TransferStatus.IN_PROGRESS, batchId);
             }
             transactionList.add(transfer);
         }
         return transactionList;
     }
 
-    private Transfer getSingleTransaction(int index, Long workflowInstanceKey, String requestId, TransferStatus status,
-                                          String batchId) {
+    private Transfer getSingleTransaction(int index, Long workflowInstanceKey, String requestId, TransferStatus status, String batchId) {
         String id = String.valueOf(index);
         Date startedAt = new Date(1685536200000L);
         Date completedAt = new Date(1685536268000L);
@@ -126,10 +117,8 @@ public class BatchService {
         String currency = "USD";
         String direction = "OUTGOING";
 
-        return new Transfer(id, workflowInstanceKey, requestId, startedAt, completedAt, status,
-                null, null, payeePartyId, payeePartyIdType, null, null,
-                null, null, payerPartyId, payerPartyIdType, null, null,
-                null, amount, currency, direction, null, batchId, null);
+        return new Transfer(id, workflowInstanceKey, requestId, startedAt, completedAt, status, null, null, payeePartyId, payeePartyIdType,
+                null, null, null, null, payerPartyId, payerPartyIdType, null, null, null, amount, currency, direction, null, batchId, null);
     }
 
 }
