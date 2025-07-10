@@ -1,4 +1,4 @@
-Mock Payement Scehma Connector for Payment Transfers
+Mock Payment Schema Connector for Payment Transfers
 
 ## Checkstyle
 Use below command to execute the checkstyle test.
