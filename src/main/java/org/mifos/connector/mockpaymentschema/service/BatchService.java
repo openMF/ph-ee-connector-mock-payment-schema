@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
 import org.mifos.connector.mockpaymentschema.schema.AuthorizationRequest;
 import org.mifos.connector.mockpaymentschema.schema.AuthorizationResponse;
@@ -38,6 +39,14 @@ public class BatchService {
 
     private int successTxnCount = 9;
 
+    private final ConcurrentHashMap<String, BatchDTO> batchSummaryStore = new ConcurrentHashMap<>();
+
+    public void storeBatchSummary(String batchId, BatchDTO batchDTO) {
+        batchSummaryStore.put(batchId, batchDTO);
+        logger.info("Stored batch summary for batchId: {}, total: {}, successful: {}, failed: {}", batchId, batchDTO.getTotal(),
+                batchDTO.getSuccessful(), batchDTO.getFailed());
+    }
+
     @Async("asyncExecutor")
     public void getAuthorization(String batchId, String clientCorrelationId, AuthorizationRequest authRequest, String callbackUrl) {
         AuthorizationResponse response = new AuthorizationResponse();
@@ -59,6 +68,11 @@ public class BatchService {
     }
 
     public BatchDTO getBatchSummary(String batchId) {
+        BatchDTO stored = batchSummaryStore.get(batchId);
+        if (stored != null) {
+            logger.info("Returning stored batch summary for batchId: {}", batchId);
+            return stored;
+        }
         return successfulBatchSummaryResponse(batchId);
     }
 
