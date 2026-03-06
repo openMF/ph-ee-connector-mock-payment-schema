@@ -145,8 +145,10 @@ configure(this) {
             "-Xlint:varargs",
             "-Xlint:preview",
             "-Xlint:static",
-            "-Xmaxwarns", 1500,
-            "-Xmaxerrs", 1500
+            "-Xmaxwarns",
+            1500,
+            "-Xmaxerrs",
+            1500
         ]
         options.deprecation = true
         options.encoding = 'UTF-8'
@@ -191,31 +193,31 @@ configure(this) {
             disableWarningsInGeneratedCode = true
             excludedPaths = ".*/build/.*"
             disable(
-                "UnusedVariable", "TypeParameterUnusedInFormals", "EmptyBlockTag", "MissingSummary",
-                "InvalidParam", "ReturnFromVoid", "AlmostJavadoc", "InvalidBlockTag", "JavaUtilDate",
-                "ReturnValueIgnored", "DirectInvocationOnMock", "CanIgnoreReturnValueSuggester",
-                "SameNameButDifferent", "MultiVariableDeclaration", "UnnecessaryDefaultInEnumSwitch"
-            )
+                    "UnusedVariable", "TypeParameterUnusedInFormals", "EmptyBlockTag", "MissingSummary",
+                    "InvalidParam", "ReturnFromVoid", "AlmostJavadoc", "InvalidBlockTag", "JavaUtilDate",
+                    "ReturnValueIgnored", "DirectInvocationOnMock", "CanIgnoreReturnValueSuggester",
+                    "SameNameButDifferent", "MultiVariableDeclaration", "UnnecessaryDefaultInEnumSwitch"
+                    )
             error(
-                "DefaultCharset", "RemoveUnusedImports", "WaitNotInLoop", "ThreeLetterTimeZoneID",
-                "VariableNameSameAsType", "UnnecessaryParentheses", "MultipleTopLevelClasses",
-                "MixedMutabilityReturnType", "AssertEqualsArgumentOrderChecker", "EmptySetMultibindingContributions",
-                "BigDecimalEquals", "MixedArrayDimensions", "UseBinds", "BadImport", "IntLongMath",
-                "FloatCast", "ReachabilityFenceUsage", "StreamResourceLeak", "TruthIncompatibleType",
-                "ByteBufferBackingArray", "OrphanedFormatString", "CatchAndPrintStackTrace",
-                "ObjectToString", "StringSplitter", "AssertThrowsMultipleStatements", "BoxedPrimitiveConstructor",
-                "EmptyCatch", "BoxedPrimitiveEquality", "SynchronizeOnNonFinalField", "WildcardImport",
-                "PrivateConstructorForNoninstantiableModule", "ClassCanBeStatic", "ClassNewInstance",
-                "UnnecessaryStaticImport", "UnsafeFinalization", "JavaTimeDefaultTimeZone", "JodaPlusMinusLong",
-                "SwitchDefault", "VarTypeName", "ArgumentSelectionDefectChecker", "CompareToZero",
-                "InjectOnConstructorOfAbstractClass", "ImmutableEnumChecker", "NarrowingCompoundAssignment",
-                "MissingCasesInEnumSwitch", "ReferenceEquality", "UndefinedEquals", "UnescapedEntity",
-                "ModifyCollectionInEnhancedForLoop", "NonCanonicalType", "InvalidInlineTag",
-                "MutablePublicArray", "StaticAssignmentInConstructor", "ProtectedMembersInFinalClass",
-                "OperatorPrecedence", "EqualsGetClass", "EqualsUnsafeCast", "DoubleBraceInitialization",
-                "UnusedNestedClass", "UnusedMethod", "ModifiedButNotUsed", "InconsistentCapitalization",
-                "MissingOverride"
-            )
+                    "DefaultCharset", "RemoveUnusedImports", "WaitNotInLoop", "ThreeLetterTimeZoneID",
+                    "VariableNameSameAsType", "UnnecessaryParentheses", "MultipleTopLevelClasses",
+                    "MixedMutabilityReturnType", "AssertEqualsArgumentOrderChecker", "EmptySetMultibindingContributions",
+                    "BigDecimalEquals", "MixedArrayDimensions", "UseBinds", "BadImport", "IntLongMath",
+                    "FloatCast", "ReachabilityFenceUsage", "StreamResourceLeak", "TruthIncompatibleType",
+                    "ByteBufferBackingArray", "OrphanedFormatString", "CatchAndPrintStackTrace",
+                    "ObjectToString", "StringSplitter", "AssertThrowsMultipleStatements", "BoxedPrimitiveConstructor",
+                    "EmptyCatch", "BoxedPrimitiveEquality", "SynchronizeOnNonFinalField", "WildcardImport",
+                    "PrivateConstructorForNoninstantiableModule", "ClassCanBeStatic", "ClassNewInstance",
+                    "UnnecessaryStaticImport", "UnsafeFinalization", "JavaTimeDefaultTimeZone", "JodaPlusMinusLong",
+                    "SwitchDefault", "VarTypeName", "ArgumentSelectionDefectChecker", "CompareToZero",
+                    "InjectOnConstructorOfAbstractClass", "ImmutableEnumChecker", "NarrowingCompoundAssignment",
+                    "MissingCasesInEnumSwitch", "ReferenceEquality", "UndefinedEquals", "UnescapedEntity",
+                    "ModifyCollectionInEnhancedForLoop", "NonCanonicalType", "InvalidInlineTag",
+                    "MutablePublicArray", "StaticAssignmentInConstructor", "ProtectedMembersInFinalClass",
+                    "OperatorPrecedence", "EqualsGetClass", "EqualsUnsafeCast", "DoubleBraceInitialization",
+                    "UnusedNestedClass", "UnusedMethod", "ModifiedButNotUsed", "InconsistentCapitalization",
+                    "MissingOverride"
+                    )
         }
     }
 }
@@ -255,9 +257,12 @@ task cucumberCli() {
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
             args = [
-                '--plugin', 'pretty',
-                '--plugin', 'html:target/cucumber-report.html',
-                '--glue', 'org.mifos.processor.cucumber',
+                '--plugin',
+                'pretty',
+                '--plugin',
+                'html:target/cucumber-report.html',
+                '--glue',
+                'org.mifos.processor.cucumber',
                 'src/test/java/resources'
             ]
         }
